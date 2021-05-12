@@ -1,3 +1,3 @@
-import { testWar } from './src/tests/testWar.mjs';
+import { testBlackJack } from "./src/tests/testBlackJack.mjs";
 
 testBlackJack();

@@ -1,4 +1,4 @@
-# NodeJS BattleBot Simulation
+# Simple Arcade Simulation
 * **Objective** - To create a product which
 * **Purpose** - To gain familiarity with
 * **Description** - Blah

@@ -1,12 +1,12 @@
-import { RobotWarGround } from "../main/RobotWarGround.mjs";
+import { BlackJackGame } from "../main/BlackJackGame.mjs";
 
-export function testWar() {
+export function testBlackJack() {
     // given
-    let warGround = new RobotWarGround();
+    let blackJackGame = new BlackJackGame();
 
     // when    
-    warGround.war();
+    blackJackGame.play();
 
     // then
-    console.log(warGround.env)
+    console.log(blackJackGame.toString());
 }
