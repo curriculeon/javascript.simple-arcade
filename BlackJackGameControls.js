@@ -8,29 +8,22 @@ class BlackJackGameControls {
         document.getElementById("btnStart").value = "restart";
         document.getElementById("status").style.display = "none";
         this.blackJackGame.play();
-        createPlayersUI();
-        updateDeck();
-        renderCards();
+        this.createPlayersUI();
+        this.updateDeck();
+        this.renderCards();
     }
 
-    renderCards() {
-        this.blackJackGame.players.forEach(player => {
-            player.cards.forEach(card => {
-                renderCard(card, player.name);
-            });
-        });
-    }
 
     hitMe() {
         // pop a card from the this.deck to the current player
-        // check if current player new points are over 21
-        currentPlayer = this.blackJackGame.currentPlayer;
+        // this.check if current player new points are over 21
+        let currentPlayer = this.blackJackGame.currentPlayer;
         let topMostCard = this.blackJackGame.deck.removeAndFetchTopMostCard();
         currentPlayer.addCard(topMostCard);
-        renderCard(topMostCard, currentPlayer.name);
-        updatePoints();
-        updateDeck();
-        check();
+        this.renderCard(topMostCard, currentPlayer.name);
+        this.updatePoints();
+        this.updateDeck();
+        this.check();
     }
 
     stay() {
@@ -44,8 +37,16 @@ class BlackJackGameControls {
             this.blackJackGame.setCurrentPlayer();
             document.getElementById(elementId).classList.add("active");
         } else {
-            end();
+            this.end();
         }
+    }
+
+    renderCards() {
+        this.blackJackGame.players.forEach(player => {
+            player.cards.forEach(card => {
+                this.renderCard(card, player.name);
+            });
+        });
     }
 
     createPlayersUI() {
@@ -74,8 +75,6 @@ class BlackJackGameControls {
             document.getElementById("players").appendChild(div_player);
         });
     }
-
-
 
     renderCard(card, playerName) {
         let playerHandId = "hand_" + playerName;
@@ -109,12 +108,9 @@ class BlackJackGameControls {
             let statusElement = document.getElementById("status");
             statusElement.innerHTML = "Player: " + this.blackJackGame.currentPlayer.name + " LOST";			
             statusElement.style.display = "inline-block";
-            end()
+            this.end()
         }
     }
-
-
-
 
     end() {
         let winner = this.blackJackGame.dealer;
