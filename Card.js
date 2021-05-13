@@ -36,18 +36,18 @@ class Card {
 
     toString() {
         if(!this.isCardAce()) {
-            return {
+            return JSON.stringify({
                 "rank": this.rank,
                 "suit": this.suit,
                 "value": this.getPrimaryCardValue()
-            };
+            });
         } else {
-            return {
+            return JSON.stringify({
                 "rank": this.rank,
                 "suit": this.suit,
                 "primaryValue": this.getPrimaryCardValue(),
                 "secondaryValue": this.getPrimaryCardValue(),
-            };
+            });
         }
     }
 }
