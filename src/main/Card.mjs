@@ -15,11 +15,11 @@ export class Card {
     // all card's secondary value is equal to their primary value, except the `ace` card
     getPrimaryCardValue() {
         if(this.rank=="king") {
-            return 13;
+            return 10;
         } else if(this.rank == "queen") {
-            return 12;
+            return 10;
         } else if(this.rank == "jack") {
-            return 11;
+            return 10;
         } else if(this.isCardAce()) {
             return 1;
         }
@@ -32,5 +32,11 @@ export class Card {
         } else {
             return 11;   
         }
+    }
+
+    toString() {
+        return "["
+        .concat(super.toString())
+        .concat(",")
     }
 }

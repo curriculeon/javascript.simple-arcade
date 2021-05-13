@@ -8,11 +8,15 @@ export class BlackJackPlayer {
 
     // prints the cards of the current BlackJackPlayer
     viewHand() {
-        console.print(this.cards)
+        console.log("Printing the hand of player [" + this.name + "]");
+        this.cards.forEach(card => {
+            console.print(card.toString());
+        });
     }
 
     // add card to hand (presumably from deck or dealer)
-    hit(incomingCard) {
+    hit(deck) {
+        let incomingCard = deck.pop();
         this.cards.push(incomingCard);
     }
 

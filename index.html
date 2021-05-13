@@ -1,11 +1,27 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
-    <script type="module" src="./app.mjs"></script>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" cont`ent="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Name Echoer</title>
+
+      <script type="text/javascript">
+          function evaluateUserInput(){
+              let userInputFirstName = document.getElementById("first_name").value;
+              let userInputLastName = document.getElementById("last_name").value;
+              let outputDisplay = "Your name is: " + userInputFirstName + " " + userInputLastName;
+              document.getElementById("output").innerHTML = outputDisplay;
+              return false;
+          }
+      </script>
   </head>
-
+  
   <body>
-    The quickest of brown foxes.
+      <form id="myform">
+        First name:<br><input id="first_name" type="text"><br>
+        Last name:<br><input id="last_name" type="text"><br>
+        <button id="submit_button" onClick="return evaluateUserInput();">Submit</button>
+      </form> 
+      <p id="output">placeholder text until the `submit_button` is clicked</p>
   </body>
-
 </html>
