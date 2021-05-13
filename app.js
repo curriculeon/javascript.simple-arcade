@@ -1,3 +1,4 @@
+// these functions are for the button
 let controls = new BlackJackGameControls();
 
 function startblackjack() {
