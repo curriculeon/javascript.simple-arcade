@@ -1,6 +1,6 @@
 export class Card {
     constructor(rank, suit) {
-        this.rank = rank.toLowerCase();
+        this.rank = rank;
         this.suit = suit.toLowerCase();
     }
 
@@ -35,8 +35,19 @@ export class Card {
     }
 
     toString() {
-        return "["
-        .concat(super.toString())
-        .concat(",")
+        if(!this.isCardAce()) {
+            return {
+                "rank": this.rank,
+                "suit": this.suit,
+                "value": this.getPrimaryCardValue()
+            };
+        } else {
+            return {
+                "rank": this.rank,
+                "suit": this.suit,
+                "primaryValue": this.getPrimaryCardValue(),
+                "secondaryValue": this.getPrimaryCardValue(),
+            };
+        }
     }
 }
