@@ -32,15 +32,4 @@ class BlackJackPlayer {
         })
         return total;
     }
-    
-    getHandState() {
-        let handTotal = this.getHandTotal();
-        if(handTotal == 21) {
-            return "BLACKJACK!";
-        } else if(handTotal > 21) {
-            return "BUST";
-        } else if(handTotal < 21) {
-            return "UNDER";
-        }
-    }
 }
