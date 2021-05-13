@@ -4,6 +4,18 @@ class Card {
         this.suit = suit.toLowerCase();
     }
 
+    getIcon() {
+        if(this.suit == "hearts") {
+            return "♥"
+        } else if(this.suit == "diamonds") {
+            return "♢";
+        } else if(this.suit == "clubs") {
+            return "♧"
+        } else if(this.suit == "spades") {
+            return "♠";
+        }
+    }
+
     isCardRed() {
         return ["hearts", "diamonds"].includes(this.suit.toLowerCase())
     }

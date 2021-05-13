@@ -5,41 +5,17 @@ function startblackjack() {
 	blackJackGame = new BlackJackGame();
 	document.getElementById("btnStart").value = "restart";
 	document.getElementById("status").style.display = "none";
-
     blackJackGame.play();
-	blackJackGame.players.forEach(player => {
-		player.viewHand();
-	});
-
 	createPlayersUI();
 	updateDeck();
+	renderCards();
 }
 
-
-function createPlayersUI() {
-	document.getElementById("players").innerHTML = "";
+function renderCards() {
 	blackJackGame.players.forEach(player => {
-		let playerNumber = player.name;
-		
-		// create new web-elements
-		let div_player = document.createElement("div");
-		let div_playerid = document.createElement("div");
-		let div_hand = document.createElement("div");
-		let div_points = document.createElement("div");
-
-		// modify the statee of newly created web-elements
-		div_player.className = "player";
-		div_points.className = "points";
-		div_player.id = "player_" + playerNumber;
-		div_points.id = "points_" + playerNumber;		
-		div_hand.id = "hand_" + playerNumber;
-		div_playerid.innerHTML = "Player " + playerNumber;
-
-		// inject new web-elements into the DOM
-		div_player.appendChild(div_playerid);
-		div_player.appendChild(div_hand);
-		div_player.appendChild(div_points);
-		document.getElementById("players").appendChild(div_player);
+		player.cards.forEach(card => {
+			renderCard(card, player.name);
+		});
 	});
 }
 
@@ -55,39 +31,69 @@ function hitMe() {
 	updatePoints();
 	updateDeck();
 	check();
-	blackJackGame.setCurrentPlayer();
 }
 
-
-function renderCard(card, player) {
-	let handId = "hand_" + player;
-	console.log(handId);
-	let hand = document.getElementById(handId);
-	hand.appendChild(getCardUI(card));
-}
-
-
-function getCardUI(card) {
-	let cardUiElement = document.createElement("div");
-	let icon = card.suit.toLowerCase();
-	cardUiElement.className = "card";
-	cardUiElement.innerHTML = card.getPrimaryCardValue() + "<br/>" + icon;
-	return cardUiElement;
-}
-
-
-function updatePoints() {
-	for (var i = 0; i < this.players.length; i++) {
-		getPoints(i);
-		document.getElementById("points_" + i).innerHTML = this.players[i].Points;
+function stay() {
+	// move on to next player, if any
+	if(!blackJackGame.isCurrentPlayerLastPlayer()) {
+		let currentPlayer = blackJackGame.currentPlayer;
+		let currentPlayerName = currentPlayer.name;
+		let elementId = "player_" + currentPlayerName;
+		
+		document.getElementById(elementId).classList.remove("active");
+		blackJackGame.setCurrentPlayer();
+		document.getElementById(elementId).classList.add("active");
+	} else {
+		end();
 	}
 }
 
+function createPlayersUI() {
+	document.getElementById("players").innerHTML = "";
+	blackJackGame.players.forEach(player => {
+		let playerName = player.name;
+		
+		// create new web-elements
+		let div_player = document.createElement("div");
+		let div_playerid = document.createElement("div");
+		let div_hand = document.createElement("div");
+		let div_points = document.createElement("div");
 
-function getPoints(playerNumber) {
-	return blackJackGame.players[playerNumber].getHandTotal();
+		// modify the statee of newly created web-elements
+		div_player.className = "player";
+		div_points.className = "points";
+		div_player.id = "player_" + playerName;
+		div_points.id = "points_" + playerName;		
+		div_hand.id = "hand_" + playerName;
+		div_playerid.innerHTML = "Player " + playerName;
+
+		// inject new web-elements into the DOM
+		div_player.appendChild(div_playerid);
+		div_player.appendChild(div_hand);
+		div_player.appendChild(div_points);
+		document.getElementById("players").appendChild(div_player);
+	});
 }
 
+
+
+function renderCard(card, playerName) {
+	let playerHandId = "hand_" + playerName;
+	let hand = document.getElementById(playerHandId);
+	let cardUiElement = document.createElement("div");
+	cardUiElement.className = "card";
+	cardUiElement.innerHTML = card.getPrimaryCardValue() + "<br/>" + card.getIcon();
+	hand.appendChild(cardUiElement);
+}
+
+function updatePoints() {
+	blackJackGame.players.forEach(player => {
+		let playerName = player.name;
+		let points = player.getHandTotal();
+		player.viewHand();
+		document.getElementById("points_" + playerName).innerHTML = points;
+	})
+}
 
 
 function updateDeck() {
@@ -100,9 +106,23 @@ function updateDeck() {
 
 function check() {
 	if (blackJackGame.currentPlayer.getHandTotal() > 21) {
-		document.getElementById("status").innerHTML =
-			"Player: " + this.players[currentPlayer].ID + " LOST";
-		document.getElementById("status").style.display = "inline-block";
-		end();
+		let statusElement = document.getElementById("status");
+		statusElement.innerHTML = "Player: " + blackJackGame.currentPlayer.name + " LOST";			
+		statusElement.style.display = "inline-block";
+		end()
 	}
+}
+
+
+
+
+function end() {
+	let winner = blackJackGame.dealer;
+	let dealerScore = blackJackGame.dealer.getHandTotal();
+	let playerScore = blackJackGame.player.getHandTotal();
+	if (playerScore > dealerScore && playerScore < 22) {
+		winner = player;
+	}
+	document.getElementById("status").innerHTML = "Winner: Player " + winner.name;
+	document.getElementById("status").style.display = "inline-block";
 }
