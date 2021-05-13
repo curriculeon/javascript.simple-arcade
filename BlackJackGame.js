@@ -31,9 +31,5 @@ class BlackJackGame {
         this.player.hit(deck);
         this.player.hit(deck);
     }
-
-    toString() {
-        return JSON.stringify(this);
-    }
 }
 

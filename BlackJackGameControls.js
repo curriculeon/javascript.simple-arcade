@@ -87,7 +87,7 @@ class BlackJackGameControls {
         let playerHandElement = document.getElementById(playerHandId);
         let cardElement = document.createElement("div");
         cardElement.className = "card";
-        cardElement.innerHTML = card.getPrimaryCardValue() + "<br/>" + card.getIcon();
+        cardElement.innerHTML = card.getValue() + "<br/>" + card.getIcon();
         playerHandElement.appendChild(cardElement);
     }
 

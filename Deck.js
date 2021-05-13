@@ -28,9 +28,4 @@ class Deck {
             this.cards[x] = (temp);
           }
     }
-
-    // enables pretty printing to console
-    toString() {
-        return this.cards.toString();
-    }
 }
