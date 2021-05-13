@@ -1,6 +1,4 @@
-import { Card } from "./Card.mjs"
-
-export class Deck {
+class Deck {
     
     // upon construction, create 52 cards: 13 ranks x 4 suits
     constructor() {        

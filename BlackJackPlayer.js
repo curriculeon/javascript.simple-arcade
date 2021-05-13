@@ -1,4 +1,4 @@
-export class BlackJackPlayer {
+class BlackJackPlayer {
     // a blackjack player should receive a name when created
     // a black jack player's hand is empty until receiving cards from a dealer
     constructor(name) {
@@ -16,7 +16,7 @@ export class BlackJackPlayer {
 
     // add card to hand (presumably from deck or dealer)
     hit(deck) {
-        let incomingCard = deck.pop();
+        let incomingCard = deck.removeAndFetchTopMostCard();
         this.cards.push(incomingCard);
     }
 

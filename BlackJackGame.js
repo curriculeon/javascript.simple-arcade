@@ -1,20 +1,24 @@
-import { BlackJackDealer } from "./BlackJackDealer.mjs";
-import { BlackJackPlayer } from "./BlackJackPlayer.mjs";
-import { Deck } from "./Deck.mjs";
-
-export class BlackJackGame {
+class BlackJackGame {
     constructor() {
         this.player = new BlackJackPlayer("Leon");
         this.dealer = new BlackJackDealer();
+        this.players = [player, dealer];
+        this.deck = new Deck();
     }
 
     play() {
-        const deck = new Deck();
-        deck.shuffle();
+        this.deck.shuffle();
         this.dealer.hit(deck);
         this.dealer.hit(deck);
         this.player.hit(deck);
         this.player.hit(deck);
+    }
+
+    toString() {
+        return {
+            "players":this.players,
+            "deck":this.deck
+        };
     }
 }
 
