@@ -1,4 +1,4 @@
-export class BlackJackPlayer {
+class BlackJackPlayer {
     // a blackjack player should receive a name when created
     // a black jack player's hand is empty until receiving cards from a dealer
     constructor(name) {
@@ -10,14 +10,18 @@ export class BlackJackPlayer {
     viewHand() {
         console.log("Printing the hand of player [" + this.name + "]");
         this.cards.forEach(card => {
-            console.print(card.toString());
+            console.log(card.toString());
         });
     }
 
     // add card to hand (presumably from deck or dealer)
     hit(deck) {
-        let incomingCard = deck.pop();
-        this.cards.push(incomingCard);
+        let incomingCard = deck.removeAndFetchTopMostCard();
+        this.addCard(incomingCard);
+    }
+    
+    addCard(cardToAddToHand) {
+        this.cards.push(cardToAddToHand);
     }
 
     getHandTotal() {

@@ -1,7 +1,19 @@
-export class Card {
+class Card {
     constructor(rank, suit) {
-        this.rank = rank.toLowerCase();
+        this.rank = rank;
         this.suit = suit.toLowerCase();
+    }
+
+    getIcon() {
+        if(this.suit == "hearts") {
+            return "♥"
+        } else if(this.suit == "diamonds") {
+            return "♢";
+        } else if(this.suit == "clubs") {
+            return "♧"
+        } else if(this.suit == "spades") {
+            return "♠";
+        }
     }
 
     isCardRed() {
@@ -22,6 +34,8 @@ export class Card {
             return 10;
         } else if(this.isCardAce()) {
             return 1;
+        } else {
+            return this.rank;
         }
     }
 
@@ -35,8 +49,19 @@ export class Card {
     }
 
     toString() {
-        return "["
-        .concat(super.toString())
-        .concat(",")
+        if(!this.isCardAce()) {
+            return JSON.stringify({
+                "rank": this.rank,
+                "suit": this.suit,
+                "value": this.getPrimaryCardValue()
+            });
+        } else {
+            return JSON.stringify({
+                "rank": this.rank,
+                "suit": this.suit,
+                "primaryValue": this.getPrimaryCardValue(),
+                "secondaryValue": this.getPrimaryCardValue(),
+            });
+        }
     }
 }
