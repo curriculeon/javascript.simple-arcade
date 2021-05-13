@@ -133,7 +133,7 @@ class Game {
 	hitMe() {
 		// pop a card from the this.deck to the current player
 		// check if current player new points are over 21
-		let this.currentPlayer = game.players[currentPlayerNumber]
+		this.currentPlayer = game.players[currentPlayerNumber]
 		let topMostCard = this.deck.removeAndFetchTopMostCard();
 		currentPlayer.addCard(topMostCard);
 		renderCard(topMostCard, this.currentPlayerNumber);

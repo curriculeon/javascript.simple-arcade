@@ -22,6 +22,8 @@ class Card {
             return 10;
         } else if(this.isCardAce()) {
             return 1;
+        } else {
+            return this.rank;
         }
     }
 
