@@ -15,16 +15,6 @@ class BlackJackGame {
         return this.currentPlayer == lastPlayer;
     }
 
-    getPlayerByName(name) {
-        for(let i=0; i<this.players.length; i++) {
-            let player = players[i];
-            if(player.name == name) {
-                return player;
-            }
-        }
-        return null;
-    }
-
     setCurrentPlayer() {
         if(this.currentPlayer == this.player) {
             this.currentPlayer = this.dealer;

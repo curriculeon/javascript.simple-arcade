@@ -1,12 +1,13 @@
+// the purpose of this class is to manipulate the DOM by evaluating the `Game` state
 class BlackJackGameControls {
     constructor() {
         this.blackJackGame = null;
     }
-        
+
     startblackjack() {
-        this.blackJackGame = new BlackJackGame();
-        document.getElementById("btnStart").value = "restart";
         document.getElementById("status").style.display = "none";
+
+        this.blackJackGame = new BlackJackGame();
         this.blackJackGame.play();
         this.createPlayersUI();
         this.updateDeck();
@@ -78,11 +79,11 @@ class BlackJackGameControls {
 
     renderCard(card, playerName) {
         let playerHandId = "hand_" + playerName;
-        let hand = document.getElementById(playerHandId);
-        let cardUiElement = document.createElement("div");
-        cardUiElement.className = "card";
-        cardUiElement.innerHTML = card.getPrimaryCardValue() + "<br/>" + card.getIcon();
-        hand.appendChild(cardUiElement);
+        let playerHandElement = document.getElementById(playerHandId);
+        let cardElement = document.createElement("div");
+        cardElement.className = "card";
+        cardElement.innerHTML = card.getPrimaryCardValue() + "<br/>" + card.getIcon();
+        playerHandElement.appendChild(cardElement);
     }
 
     updatePoints() {
