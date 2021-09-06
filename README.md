@@ -1,5 +1,5 @@
 # Simple Arcade Simulation
-
+You can preview this application by clicking [here](https://curriculeon.github.io/javascript.simple-arcade/)
 * **Objective** - To create a casino application using _vanilla_ HTML, CSS, JS.
 * **Purpose** - To gain familiarity with core web concepts.
 * **Description**
