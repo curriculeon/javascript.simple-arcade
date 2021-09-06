@@ -27,20 +27,9 @@ class BlackJackPlayer {
     getHandTotal() {
         let total = 0;
         this.cards.forEach(currentCard=> {
-            let currentCardValue = currentCard.getPrimaryCardValue();
+            let currentCardValue = currentCard.getValue();
             total += currentCardValue
         })
         return total;
-    }
-    
-    getHandState() {
-        let handTotal = this.getHandTotal();
-        if(handTotal == 21) {
-            return "BLACKJACK!";
-        } else if(handTotal > 21) {
-            return "BUST";
-        } else if(handTotal < 21) {
-            return "UNDER";
-        }
     }
 }

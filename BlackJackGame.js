@@ -1,6 +1,6 @@
 class BlackJackGame {
     constructor() {
-        this.player = new BlackJackPlayer("Leon");
+        this.player = new BlackJackPlayer("Kayla");
         this.dealer = new BlackJackPlayer("Dealer");
         this.players = [this.player, this.dealer];
         this.currentPlayer = this.player;
@@ -13,16 +13,6 @@ class BlackJackGame {
         let lastPlayerIndex = numberOfPlayers - 1;
         let lastPlayer = this.players[lastPlayerIndex];        
         return this.currentPlayer == lastPlayer;
-    }
-
-    getPlayerByName(name) {
-        for(let i=0; i<this.players.length; i++) {
-            let player = players[i];
-            if(player.name == name) {
-                return player;
-            }
-        }
-        return null;
     }
 
     setCurrentPlayer() {
@@ -40,10 +30,6 @@ class BlackJackGame {
         this.dealer.hit(deck);
         this.player.hit(deck);
         this.player.hit(deck);
-    }
-
-    toString() {
-        return JSON.stringify(this);
     }
 }
 
